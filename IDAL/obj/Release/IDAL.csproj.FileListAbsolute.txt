@@ -1,0 +1,14 @@
+C:\Users\Administrator\Dropbox\Source.Code\cms_webservice\IDAL\bin\Release\cms_webservice.IDAL.dll
+C:\Users\Administrator\Dropbox\Source.Code\cms_webservice\IDAL\bin\Release\cms_webservice.IDAL.pdb
+C:\Users\Administrator\Dropbox\Source.Code\cms_webservice\IDAL\bin\Release\cms_webservice.Model.dll
+C:\Users\Administrator\Dropbox\Source.Code\cms_webservice\IDAL\bin\Release\cms_webservice.Model.pdb
+C:\Users\Administrator\Dropbox\Source.Code\cms_webservice\IDAL\obj\Release\IDAL.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Dropbox\Source.Code\cms_webservice\IDAL\obj\Release\cms_webservice.IDAL.dll
+C:\Users\Administrator\Dropbox\Source.Code\cms_webservice\IDAL\obj\Release\cms_webservice.IDAL.pdb
+C:\Users\Yu.hongda\Dropbox\Source.Code\cms_webservice\IDAL\bin\Release\cms_webservice.IDAL.dll
+C:\Users\Yu.hongda\Dropbox\Source.Code\cms_webservice\IDAL\bin\Release\cms_webservice.IDAL.pdb
+C:\Users\Yu.hongda\Dropbox\Source.Code\cms_webservice\IDAL\bin\Release\cms_webservice.Model.dll
+C:\Users\Yu.hongda\Dropbox\Source.Code\cms_webservice\IDAL\bin\Release\cms_webservice.Model.pdb
+C:\Users\Yu.hongda\Dropbox\Source.Code\cms_webservice\IDAL\obj\Release\IDAL.csprojResolveAssemblyReference.cache
+C:\Users\Yu.hongda\Dropbox\Source.Code\cms_webservice\IDAL\obj\Release\cms_webservice.IDAL.dll
+C:\Users\Yu.hongda\Dropbox\Source.Code\cms_webservice\IDAL\obj\Release\cms_webservice.IDAL.pdb
