@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data;
+using System.Collections.Generic;
 using cms_webservice.IDAL;
+using cms_webservice.Model;
 
 namespace cms_webservice.BLL
 {
@@ -12,5 +14,26 @@ namespace cms_webservice.BLL
         {
             return dal.getPetitionList();
         }
+
+        public bool InsertPetition(Petition petition, List<Pic> pics)
+        {
+            return dal.InsertPetition(petition, pics);
+        }
+
+        public DataTable getPetitionById(int petitionId)
+        {
+            return dal.getPetitionById(petitionId);
+        }
+
+        public bool UpdatePetition(Petition petition, List<Pic> pics)
+        {
+            return dal.UpdatePetition(petition, pics);
+        }
+
+        public DataTable getPicsByPetitionId()
+        {
+            return dal.getPicsByPetitionId();
+        }
+        
     }
 }

@@ -23,5 +23,12 @@ namespace cms_webservice.DALFactory
             string className = path + ".PetitionDAL";
             return (cms_webservice.IDAL.IPetitionDAL)Assembly.Load(path).CreateInstance(className);
         }
+
+        public static cms_webservice.IDAL.IHandsUpRecordDAL CreateHandsUpRecordDAL()
+        {
+            string className = path + ".HandsUpRecordDAL";
+            return (cms_webservice.IDAL.IHandsUpRecordDAL)Assembly.Load(path).CreateInstance(className);
+        }
+
     }
 }

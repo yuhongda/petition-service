@@ -10,13 +10,22 @@
         $(function () {
             $('#insert').click(function () {
                 var data = {
-                    'Title': 'blablabla',
-                    'Content': 'blablabla...blablabla...blablabla...',
-                    'ShortContent': 'blablabla...blablabla...blablabla...'
+                    petition: {
+                        Title: 'test1',
+                        Description: 'test desc',
+                        CreateTime: +new Date(),
+                        FromUserId: 'silverage',
+                        ToUserId: 'nianxiaohei',
+                        ToUserName: '小二黑',
+                        Status: 0
+                    },
+                    pics: [
+                        {ImageUrl: 'https://img.ltn.com.tw/Upload/liveNews/BigPic/600_phpgfwHnP.jpg'}
+                    ]
                 };
 
                 var request = $.ajax({
-                    url: 'http://localhost:8080/PetitionWebService.asmx/getPetitionList',
+                    url: 'http://localhost:8080/PetitionWebService.asmx/postPetition',
                     type: "POST",
                     data: "{ post: '" + JSON.stringify(data) + "'}",
                     dataType: "json",

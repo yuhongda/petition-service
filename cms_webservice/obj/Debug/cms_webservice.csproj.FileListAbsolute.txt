@@ -54,3 +54,4 @@ C:/Users/Yu.hongda/Dropbox/Source.Code/cms_webservice/cms_webservice/obj/Debug/c
 /Users/yuhongda/Documents/Projects/petition-service/cms_webservice/obj/Debug/cms_webservice.csproj.CopyComplete
 /Users/yuhongda/Documents/Projects/petition-service/cms_webservice/obj/Debug/cms_webservice.dll
 /Users/yuhongda/Documents/Projects/petition-service/cms_webservice/obj/Debug/cms_webservice.pdb
+/Users/yuhongda/Documents/Projects/petition-service/cms_webservice/obj/Debug/cms_webservice.csprojAssemblyReference.cache

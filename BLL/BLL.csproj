@@ -43,6 +43,7 @@
     <Compile Include="Lazy_Yu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PetitionBLL.cs" />
+    <Compile Include="HandsUpRecordBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DALFactory\DALFactory.csproj">

@@ -46,6 +46,7 @@
     <Compile Include="IPageMoudle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IPetitionDAL.cs" />
+    <Compile Include="IHandsUpRecordDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
