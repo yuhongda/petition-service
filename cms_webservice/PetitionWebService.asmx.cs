@@ -54,6 +54,7 @@ namespace cms_webservice
                         ToUserName = p.ToUserName,
                         Status = p.Status,
                         HandsUp = p.HandsUp,
+                        HandsUpCount = p.HandsUpCount,
                         Pics = g.ToList().Where<PetitionList>(item => item.ImageUrl != null).Select<PetitionList, string>(item => item.ImageUrl).ToList<string>()
                     };
                 }
@@ -87,6 +88,7 @@ namespace cms_webservice
                         ToUserName = p.ToUserName,
                         Status = p.Status,
                         HandsUp = p.HandsUp,
+                        HandsUpCount = p.HandsUpCount,
                         Pics = g.ToList().Where<PetitionList>(item => item.ImageUrl != null).Select<PetitionList, string>(item => item.ImageUrl).ToList<string>()
                     };
                 }
@@ -161,29 +163,34 @@ namespace cms_webservice
         public string handsUp(string post)
         {
             HandsUpPostData postData = post.FromJsonTo<HandsUpPostData>();
-
+            HandsUpRecord newItem = new HandsUpRecord()
+            {
+                UserId = postData.UserId,
+                PetitionId = postData.PetitionId
+            };
 
             if (postData.Type == 1)
             {
-                if (this.Lazy_HandsUpRecordBLL.InsertHandsUpRecord(new HandsUpRecord() {
-                    UserId = postData.UserId,
-                    PetitionId = postData.PetitionId
-                }))
+                if (!this.Lazy_HandsUpRecordBLL.CheckIsHandsUp(newItem))
                 {
-                    return new Result() { Code = 0, Data = null }.ToJSON();
+                    if (this.Lazy_HandsUpRecordBLL.InsertHandsUpRecord(newItem))
+                    {
+                        return new Result() { Code = 0, Data = null }.ToJSON();
+                    }
+                    else
+                    {
+                        return new Result() { Code = 100, Data = null, Message = "发生错误" }.ToJSON();
+                    }
                 }
                 else
                 {
-                    return new Result() { Code = 100, Data = null, Message = "发生错误" }.ToJSON();
+                    return new Result() { Code = 101, Data = null, Message = "已举手" }.ToJSON();
                 }
+
             }
             else
             {
-                if (this.Lazy_HandsUpRecordBLL.DeleteHandsUpRecord(new HandsUpRecord()
-                {
-                    UserId = postData.UserId,
-                    PetitionId = postData.PetitionId
-                }))
+                if (this.Lazy_HandsUpRecordBLL.DeleteHandsUpRecord(newItem))
                 {
                     return new Result() { Code = 0, Data = null }.ToJSON();
                 }
@@ -192,7 +199,22 @@ namespace cms_webservice
                     return new Result() { Code = 100, Data = null, Message = "发生错误" }.ToJSON();
                 }
             }
-            
+        }
+
+        [WebMethod]
+        public string getHandsUpRecordByUserId(string post)
+        {
+            GetHandsUpPostData postData = post.FromJsonTo<GetHandsUpPostData>();
+            List<HandsUpRecord> handsUpList = this.Lazy_HandsUpRecordBLL.GetHandsUpRecordByUserId(postData.UserId).ToList<HandsUpRecord>();
+            return new ResultHandsUpRecord() { Code = 0, Data = handsUpList }.ToJSON();
+        }
+
+        [WebMethod]
+        public string getHandsUpRecordByPetitionId(string post)
+        {
+            GetHandsUpPostData postData = post.FromJsonTo<GetHandsUpPostData>();
+            List<HandsUpRecord> handsUpList = this.Lazy_HandsUpRecordBLL.GetHandsUpRecordByPetitionId(postData.PetitionId).ToList<HandsUpRecord>();
+            return new ResultHandsUpRecord() { Code = 0, Data = handsUpList }.ToJSON();
         }
     }
 
@@ -200,6 +222,13 @@ namespace cms_webservice
     {
         public int Code { get; set; }
         public List<ReturnPetitionList> Data { get; set; }
+        public string Message { get; set; }
+    }
+
+    public class ResultHandsUpRecord
+    {
+        public int Code { get; set; }
+        public List<HandsUpRecord> Data { get; set; }
         public string Message { get; set; }
     }
 
@@ -233,6 +262,7 @@ namespace cms_webservice
         public int Status { get; set; }
         public int? HandsUp { get; set; }
         public string ImageUrl { get; set; }
+        public int? HandsUpCount { get; set; }
     }
 
     public class ReturnPetitionList
@@ -247,6 +277,7 @@ namespace cms_webservice
         public int Status { get; set; }
         public int? HandsUp { get; set; }
         public List<string> Pics { get; set; }
+        public int? HandsUpCount { get; set; }
     }
 
     public class HandsUpPostData
@@ -256,6 +287,14 @@ namespace cms_webservice
         public string UserId { get; set; }
         public int PetitionId { get; set; }
     }
+
+    public class GetHandsUpPostData
+    {
+        public string UserId { get; set; }
+        public int PetitionId { get; set; }
+    }
+
+
 
 
 }

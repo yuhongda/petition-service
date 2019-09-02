@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using cms_webservice.IDAL;
 using cms_webservice.Model;
 
@@ -17,5 +18,22 @@ namespace cms_webservice.BLL
         {
             return dal.DeleteHandsUpRecord(handsUpRecord);
         }
+
+        public bool CheckIsHandsUp(HandsUpRecord handsUpRecord)
+        {
+            return dal.CheckIsHandsUp(handsUpRecord);
+        }
+
+        public DataTable GetHandsUpRecordByUserId(string userId)
+        {
+            return dal.GetHandsUpRecordByUserId(userId);
+        }
+
+        public DataTable GetHandsUpRecordByPetitionId(int petitionId)
+        {
+            return dal.GetHandsUpRecordByPetitionId(petitionId);
+        }
+        
+
     }
 }
