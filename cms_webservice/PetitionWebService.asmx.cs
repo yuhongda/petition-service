@@ -105,13 +105,14 @@ namespace cms_webservice
         {
             InsertPetitionPostData postData = post.FromJsonTo<InsertPetitionPostData>();
 
-            if (this.Lazy_PetitionBLL.InsertPetition(postData.petition, postData.pics))
+            int newId = this.Lazy_PetitionBLL.InsertPetition(postData.petition, postData.pics);
+            if (newId != -1)
             {
-                return new Result() { Code = 0, Data = null }.ToJSON();
+                return new ResultPost() { Code = 0, PetitionId = newId }.ToJSON();
             }
             else
             {
-                return new Result() { Code = 100, Data = null, Message = "发生错误" }.ToJSON();
+                return new ResultPost() { Code = 100, PetitionId = newId, Message = "系统错误" }.ToJSON();
             }
         }
 
@@ -229,6 +230,13 @@ namespace cms_webservice
     {
         public int Code { get; set; }
         public List<HandsUpRecord> Data { get; set; }
+        public string Message { get; set; }
+    }
+
+    public class ResultPost
+    {
+        public int Code { get; set; }
+        public int PetitionId { get; set; }
         public string Message { get; set; }
     }
 

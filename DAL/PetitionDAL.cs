@@ -65,7 +65,7 @@ namespace cms_webservice.DAL
             return DAO.Select(string.Format(sqlGetPetitionById, "@petitionId"), sp);
         }
 
-        public bool InsertPetition(Petition petition, List<Pic> pics)
+        public int InsertPetition(Petition petition, List<Pic> pics)
         {
             Dictionary<SqlParameter[], string> insertSqls = new Dictionary<SqlParameter[], string>();
             Int32 newId = 0;
@@ -96,7 +96,14 @@ namespace cms_webservice.DAL
                 }
             }
 
-            return DAO.ExecuteSqlTran(insertSqls);
+            if (DAO.ExecuteSqlTran(insertSqls))
+            {
+                return newId;
+            }
+            else
+            {
+                return -1;
+            }
         }
 
         public bool UpdatePetition(Petition petition, List<Pic> pics)

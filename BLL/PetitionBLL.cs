@@ -15,7 +15,7 @@ namespace cms_webservice.BLL
             return dal.getPetitionList();
         }
 
-        public bool InsertPetition(Petition petition, List<Pic> pics)
+        public int InsertPetition(Petition petition, List<Pic> pics)
         {
             return dal.InsertPetition(petition, pics);
         }
