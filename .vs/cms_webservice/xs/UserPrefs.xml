@@ -11,20 +11,19 @@
       <File FileName="BLL/HandsUpRecordBLL.cs" Line="34" Column="52" />
       <File FileName="IDAL/IPetitionDAL.cs" Line="10" Column="12" />
       <File FileName="BLL/PetitionBLL.cs" Line="18" Column="19" />
-      <File FileName="cms_webservice/Web.config" Line="19" Column="17" />
+      <File FileName="cms_webservice/Web.config" Line="33" Column="12" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="cms_webservice" expanded="True">
             <Node name="BLL" expanded="True" />
-            <Node name="cms_webservice" expanded="True">
+            <Node name="cms_webservice" expanded="True" selected="True">
               <Node name="Tools" expanded="True" />
               <Node name="ArticleWebService.asmx" expanded="True" />
               <Node name="Global.asax" expanded="True" />
               <Node name="PetitionWebService.asmx" expanded="True" />
               <Node name="Test.aspx" expanded="True" />
-              <Node name="Web.config" selected="True" />
             </Node>
             <Node name="DAL" expanded="True" />
             <Node name="DALFactory" expanded="True" />
