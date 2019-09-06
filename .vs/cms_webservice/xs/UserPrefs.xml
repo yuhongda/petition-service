@@ -1,40 +1,40 @@
 ﻿<Properties StartupConfiguration="{1CB535E8-84E9-4D82-965E-2AB05CF518F3}|">
   <MonoDevelop.Ide.ItemProperties.cms__webservice PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="cms_webservice/Web.config">
+  <MonoDevelop.Ide.Workbench ActiveDocument="cms_webservice/PetitionWebService.asmx.cs">
     <Files>
       <File FileName="cms_webservice/Test.aspx" Line="31" Column="38" />
       <File FileName="cms_webservice/PetitionWebService.asmx.cs" Line="104" Column="35" />
-      <File FileName="Model/Petition.cs" Line="1" Column="1" />
-      <File FileName="DAL/PetitionDAL.cs" Line="68" Column="19" />
-      <File FileName="DAL/HandsUpRecordDAL.cs" Line="92" Column="70" />
-      <File FileName="IDAL/IHandsUpRecordDAL.cs" Line="13" Column="64" />
-      <File FileName="BLL/HandsUpRecordBLL.cs" Line="34" Column="52" />
-      <File FileName="IDAL/IPetitionDAL.cs" Line="10" Column="12" />
-      <File FileName="BLL/PetitionBLL.cs" Line="18" Column="19" />
-      <File FileName="cms_webservice/Web.config" Line="33" Column="12" />
+      <File FileName="Model/Petition.cs" />
+      <File FileName="DAL/PetitionDAL.cs" />
+      <File FileName="DAL/HandsUpRecordDAL.cs" />
+      <File FileName="IDAL/IHandsUpRecordDAL.cs" />
+      <File FileName="BLL/HandsUpRecordBLL.cs" />
+      <File FileName="IDAL/IPetitionDAL.cs" />
+      <File FileName="BLL/PetitionBLL.cs" />
+      <File FileName="cms_webservice/Web.config" Line="61" Column="13" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="cms_webservice" expanded="True">
-            <Node name="BLL" expanded="True" />
-            <Node name="cms_webservice" expanded="True" selected="True">
+            <Node name="cms_webservice" expanded="True">
               <Node name="Tools" expanded="True" />
               <Node name="ArticleWebService.asmx" expanded="True" />
               <Node name="Global.asax" expanded="True" />
-              <Node name="PetitionWebService.asmx" expanded="True" />
+              <Node name="PetitionWebService.asmx" expanded="True">
+                <Node name="PetitionWebService.asmx.cs" selected="True" />
+              </Node>
               <Node name="Test.aspx" expanded="True" />
             </Node>
-            <Node name="DAL" expanded="True" />
-            <Node name="DALFactory" expanded="True" />
-            <Node name="IDAL" expanded="True" />
-            <Node name="Model" expanded="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <DisabledProjects>
+    <String>ws/ws.csproj</String>
+  </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

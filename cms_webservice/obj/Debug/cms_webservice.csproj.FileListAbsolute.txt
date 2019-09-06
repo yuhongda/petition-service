@@ -50,8 +50,8 @@ C:/Users/Yu.hongda/Dropbox/Source.Code/cms_webservice/cms_webservice/obj/Debug/c
 /Users/yuhongda/Documents/Projects/petition-service/cms_webservice/bin/cms_webservice.DAL.dll.config
 /Users/yuhongda/Documents/Projects/petition-service/cms_webservice/bin/cms_webservice.IDAL.pdb
 /Users/yuhongda/Documents/Projects/petition-service/cms_webservice/bin/cms_webservice.Model.pdb
+/Users/yuhongda/Documents/Projects/petition-service/cms_webservice/obj/Debug/cms_webservice.csprojAssemblyReference.cache
 /Users/yuhongda/Documents/Projects/petition-service/cms_webservice/obj/Debug/cms_webservice.csproj.CoreCompileInputs.cache
 /Users/yuhongda/Documents/Projects/petition-service/cms_webservice/obj/Debug/cms_webservice.csproj.CopyComplete
 /Users/yuhongda/Documents/Projects/petition-service/cms_webservice/obj/Debug/cms_webservice.dll
 /Users/yuhongda/Documents/Projects/petition-service/cms_webservice/obj/Debug/cms_webservice.pdb
-/Users/yuhongda/Documents/Projects/petition-service/cms_webservice/obj/Debug/cms_webservice.csprojAssemblyReference.cache
