@@ -28,6 +28,11 @@ public class ImageHandler : IHttpHandler, IRequiresSessionState
         }
         b.Save(context.Response.OutputStream, ImageFormat.Gif);
         context.Session["__VerifyCode@CMS__"] = s.ToString();
+        HttpCookie verifyCodeCookie = new HttpCookie("__VerifyCode@CMS__");
+        DateTime now = DateTime.Now;
+        verifyCodeCookie.Value = s.ToString();
+        verifyCodeCookie.Expires = now.AddHours(1);
+        context.Response.Cookies.Add(verifyCodeCookie);
         context.Response.End();
     }
  

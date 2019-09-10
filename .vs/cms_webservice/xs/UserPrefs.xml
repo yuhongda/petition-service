@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{1CB535E8-84E9-4D82-965E-2AB05CF518F3}|">
   <MonoDevelop.Ide.ItemProperties.cms__webservice PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="cms_webservice/PetitionWebService.asmx.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="cms_webservice/ImageHandler.ashx">
     <Files>
       <File FileName="cms_webservice/Test.aspx" Line="31" Column="38" />
-      <File FileName="cms_webservice/PetitionWebService.asmx.cs" Line="104" Column="35" />
+      <File FileName="cms_webservice/PetitionWebService.asmx.cs" Line="87" Column="47" />
       <File FileName="Model/Petition.cs" />
       <File FileName="DAL/PetitionDAL.cs" />
       <File FileName="DAL/HandsUpRecordDAL.cs" />
@@ -11,7 +11,9 @@
       <File FileName="BLL/HandsUpRecordBLL.cs" />
       <File FileName="IDAL/IPetitionDAL.cs" />
       <File FileName="BLL/PetitionBLL.cs" />
-      <File FileName="cms_webservice/Web.config" Line="61" Column="13" />
+      <File FileName="cms_webservice/Web.config" />
+      <File FileName="cms_webservice/Test.aspx.cs" Line="1" Column="1" />
+      <File FileName="cms_webservice/ImageHandler.ashx" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -21,9 +23,8 @@
               <Node name="Tools" expanded="True" />
               <Node name="ArticleWebService.asmx" expanded="True" />
               <Node name="Global.asax" expanded="True" />
-              <Node name="PetitionWebService.asmx" expanded="True">
-                <Node name="PetitionWebService.asmx.cs" selected="True" />
-              </Node>
+              <Node name="ImageHandler.ashx" selected="True" />
+              <Node name="PetitionWebService.asmx" expanded="True" />
               <Node name="Test.aspx" expanded="True" />
             </Node>
           </Node>
