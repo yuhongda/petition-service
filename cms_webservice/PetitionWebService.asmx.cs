@@ -227,7 +227,7 @@ namespace cms_webservice
             string url = "http://smsbj1.253.com/msg/send/json";
             string account = "N1973877";
             string password = "FecuDBUHAPb1a6";
-            string msg = "【玛娜星球】 您的验证码是{0}";
+            string msg = "【举手】 您的验证码是{0}";
             string json = "\"account\":\"{0}\",\"password\":\"{1}\",\"phone\":\"{2}\",\"report\":\"true\",\"msg\":\"{3}\"";
             var result = "";
 
