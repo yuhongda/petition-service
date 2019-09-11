@@ -4,6 +4,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
@@ -217,6 +218,46 @@ namespace cms_webservice
             List<HandsUpRecord> handsUpList = this.Lazy_HandsUpRecordBLL.GetHandsUpRecordByPetitionId(postData.PetitionId).ToList<HandsUpRecord>();
             return new ResultHandsUpRecord() { Code = 0, Data = handsUpList }.ToJSON();
         }
+
+        [WebMethod]
+        public string getVerifyCode(string post)
+        {
+            GetVerifyCodePostData postData = post.FromJsonTo<GetVerifyCodePostData>();
+
+            string url = "http://smsbj1.253.com/msg/send/json";
+            string account = "N1973877";
+            string password = "FecuDBUHAPb1a6";
+            string msg = "【玛娜星球】 您的验证码是{0}";
+            string json = "\"account\":\"{0}\",\"password\":\"{1}\",\"phone\":\"{2}\",\"report\":\"true\",\"msg\":\"{3}\"";
+            var result = "";
+
+            Random random = new Random();
+            string code = random.Next(100000, 999999).ToString();
+
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
+            NetworkCredential auth = new NetworkCredential(account, password);
+            httpWebRequest.Credentials = auth;
+
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                streamWriter.Write("{"+string.Format(json, account, password, postData.Phone, string.Format(msg, code))+"}");
+            }
+
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            Cookie verifyCodeCookie = new Cookie("__PhoneVerifyCode@HandsUp__", code);
+            httpResponse.Cookies.Add(verifyCodeCookie);
+            ResultPhoneVerifyCode resultPhoneVerifyCode;
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                result = streamReader.ReadToEnd();
+                resultPhoneVerifyCode = result.FromJsonTo<ResultPhoneVerifyCode>();
+
+            }
+
+            return new ReturnPhoneVerifyCode() { Code = resultPhoneVerifyCode.code, Data = code, Message = resultPhoneVerifyCode.errorMsg }.ToJSON();
+        }
     }
 
     public class Result
@@ -246,6 +287,22 @@ namespace cms_webservice
         public string Filename { get; set; }
         public string Message { get; set; }
     }
+
+    public class ResultPhoneVerifyCode
+    {
+        public int code { get; set; }
+        public string msgId { get; set; }
+        public string time { get; set; }
+        public string errorMsg { get; set; }
+    }
+
+    public class ReturnPhoneVerifyCode
+    {
+        public int Code { get; set; }
+        public string Data { get; set; }
+        public string Message { get; set; }
+    }
+    
 
     public class InsertPetitionPostData
     {
@@ -302,6 +359,11 @@ namespace cms_webservice
         public int PetitionId { get; set; }
     }
 
+    public class GetVerifyCodePostData
+    {
+        public string Phone { get; set; }
+    }
+    
 
 
 

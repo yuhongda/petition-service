@@ -27,8 +27,8 @@ public class ImageHandler : IHttpHandler, IRequiresSessionState
             g.DrawString(letter, font, new SolidBrush(Color.FromArgb(1, 67, 156)), i * 38, r.Next(0, 15));
         }
         b.Save(context.Response.OutputStream, ImageFormat.Gif);
-        context.Session["__VerifyCode@CMS__"] = s.ToString();
-        HttpCookie verifyCodeCookie = new HttpCookie("__VerifyCode@CMS__");
+        context.Session["__VerifyCode@HandsUp__"] = s.ToString();
+        HttpCookie verifyCodeCookie = new HttpCookie("__VerifyCode@HandsUp__");
         DateTime now = DateTime.Now;
         verifyCodeCookie.Value = s.ToString();
         verifyCodeCookie.Expires = now.AddHours(1);
