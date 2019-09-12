@@ -30,5 +30,12 @@ namespace cms_webservice.DALFactory
             return (cms_webservice.IDAL.IHandsUpRecordDAL)Assembly.Load(path).CreateInstance(className);
         }
 
+
+        public static cms_webservice.IDAL.IUserDAL CreateUserDAL()
+        {
+            string className = path + ".UserDAL";
+            return (cms_webservice.IDAL.IUserDAL)Assembly.Load(path).CreateInstance(className);
+        }
+
     }
 }

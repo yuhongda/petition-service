@@ -35,6 +35,12 @@ namespace cms_webservice
             get { return this.lazy_HandsUpRecordBLL.Value; }
         }
 
+        Lazy_Yu<UserBLL> lazy_UserBLL = new Lazy_Yu<UserBLL>(() => new UserBLL());
+        public UserBLL Lazy_UserBLL
+        {
+            get { return this.lazy_UserBLL.Value; }
+        }
+
         [WebMethod]
         public string getPetitionList()
         {
@@ -258,6 +264,52 @@ namespace cms_webservice
 
             return new ReturnPhoneVerifyCode() { Code = resultPhoneVerifyCode.code, Data = code, Message = resultPhoneVerifyCode.errorMsg }.ToJSON();
         }
+
+        [WebMethod]
+        public string signUp(string post)
+        {
+            User postData = post.FromJsonTo<User>();
+
+            if (!this.Lazy_UserBLL.CheckUserExists(postData))
+            {
+                if (!this.Lazy_UserBLL.CheckUsernameExists(postData))
+                {
+                    if (this.Lazy_UserBLL.InsertUser(postData))
+                    {
+                        return new Result() { Code = 0, Data = null }.ToJSON();
+                    }
+                    else
+                    {
+                        return new Result() { Code = 100, Data = null, Message = "发生错误" }.ToJSON();
+                    }
+                }
+                else
+                {
+                    return new Result() { Code = 102, Data = null, Message = "用户名已存在" }.ToJSON();
+                }
+            }
+            else
+            {
+                return new Result() { Code = 101, Data = null, Message = "用户已存在" }.ToJSON();
+            }
+        }
+
+        [WebMethod]
+        public string signIn(string post)
+        {
+            User postData = post.FromJsonTo<User>();
+
+            if (this.Lazy_UserBLL.CheckUserSignIn(postData))
+            {
+                List<User> userList = this.Lazy_UserBLL.getUserByPhone(postData).ToList<User>();
+                return new ResultUserList() { Code = 0, Data = userList }.ToJSON();
+            }
+            else
+            {
+                return new Result() { Code = 101, Data = null, Message = "用户不存在" }.ToJSON();
+            }
+        }
+        
     }
 
     public class Result
@@ -302,7 +354,13 @@ namespace cms_webservice
         public string Data { get; set; }
         public string Message { get; set; }
     }
-    
+
+    public class ResultUserList
+    {
+        public int Code { get; set; }
+        public List<User> Data { get; set; }
+    }
+
 
     public class InsertPetitionPostData
     {
