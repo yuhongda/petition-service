@@ -15,7 +15,7 @@ namespace cms_webservice.DAL
         public const string sqlUpdateUser = "UPDATE T_User SET username={1}, password={2}, avatar={3} WHERE (phone = {0})";
         public const string sqlCheckUserExists = "SELECT * FROM T_User WHERE (phone = {0})";
         public const string sqlCheckUsernameExists = "SELECT * FROM T_User WHERE (username = {0})";
-        public const string sqlCheckUserSignIn = "SELECT * FROM T_User WHERE (phone = {0}) AND (username = {1})";
+        public const string sqlCheckUserSignIn = "SELECT * FROM T_User WHERE (phone = {0}) AND (password = {1})";
         public const string sqlSelectUserByPhone = "SELECT * FROM T_User WHERE (phone = {0})";
 
 

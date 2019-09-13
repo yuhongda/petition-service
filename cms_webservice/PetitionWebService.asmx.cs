@@ -276,7 +276,8 @@ namespace cms_webservice
                 {
                     if (this.Lazy_UserBLL.InsertUser(postData))
                     {
-                        return new Result() { Code = 0, Data = null }.ToJSON();
+                        List<User> userList = this.Lazy_UserBLL.getUserByPhone(postData).ToList<User>();
+                        return new ResultUserList() { Code = 0, Data = userList }.ToJSON();
                     }
                     else
                     {
@@ -306,7 +307,7 @@ namespace cms_webservice
             }
             else
             {
-                return new Result() { Code = 101, Data = null, Message = "用户不存在" }.ToJSON();
+                return new Result() { Code = 101, Data = null, Message = "用户不存在或密码错误" }.ToJSON();
             }
         }
         
