@@ -11,4 +11,3 @@ C:/Users/Yu.hongda/Dropbox/Source.Code/cms_webservice/Model/obj/Debug/cms_webser
 /Users/yuhongda/Documents/Projects/petition-service/Model/obj/Debug/Model.csproj.CoreCompileInputs.cache
 /Users/yuhongda/Documents/Projects/petition-service/Model/obj/Debug/cms_webservice.Model.dll
 /Users/yuhongda/Documents/Projects/petition-service/Model/obj/Debug/cms_webservice.Model.pdb
-/Users/yuhongda/Documents/Projects/petition-service/Model/obj/Debug/Model.csprojAssemblyReference.cache

@@ -1,14 +1,16 @@
 ﻿<Properties StartupConfiguration="{1CB535E8-84E9-4D82-965E-2AB05CF518F3}|">
   <MonoDevelop.Ide.ItemProperties.cms__webservice PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../../Desktop/source/ITA_WebSite/App_Code/PagerBase.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="cms_webservice/PetitionWebService.asmx.cs">
     <Files>
-      <File FileName="DAL/PageMoudle.cs" Line="53" Column="29" />
-      <File FileName="cms_webservice/PetitionWebService.asmx.cs" Line="84" Column="53" />
-      <File FileName="BLL/PetitionBLL.cs" Line="16" Column="58" />
-      <File FileName="DAL/PetitionDAL.cs" Line="13" Column="187" />
-      <File FileName="cms_webservice/Tools/MyExtensions.cs" Line="88" Column="1" />
+      <File FileName="DAL/PageMoudle.cs" Line="68" Column="30" />
+      <File FileName="cms_webservice/PetitionWebService.asmx.cs" Line="113" Column="45" />
+      <File FileName="BLL/PetitionBLL.cs" Line="20" Column="113" />
       <File FileName="cms_webservice/Tools/MyExtensions.cs" Line="88" Column="1" />
       <File FileName="../../../Desktop/source/ITA_WebSite/App_Code/PagerBase.cs" Line="90" Column="38" />
+      <File FileName="cms_webservice/AdminWebService.asmx.cs" Line="93" Column="53" />
+      <File FileName="IDAL/IPetitionDAL.cs" Line="11" Column="47" />
+      <File FileName="DAL/DataAccessObjectBase.cs" Line="303" Column="14" />
+      <File FileName="DAL/PetitionDAL.cs" Line="108" Column="35" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,14 +19,14 @@
             <Node name="BLL" expanded="True" />
             <Node name="cms_webservice" expanded="True">
               <Node name="Tools" expanded="True" />
+              <Node name="AdminWebService.asmx" expanded="True" />
               <Node name="ArticleWebService.asmx" expanded="True" />
               <Node name="Global.asax" expanded="True" />
-              <Node name="PetitionWebService.asmx" expanded="True" />
-              <Node name="Test.aspx" expanded="True" />
+              <Node name="PetitionWebService.asmx" expanded="True">
+                <Node name="PetitionWebService.asmx.cs" selected="True" />
+              </Node>
             </Node>
-            <Node name="DAL" expanded="True">
-              <Node name="PageMoudle.cs" selected="True" />
-            </Node>
+            <Node name="DAL" expanded="True" />
             <Node name="DALFactory" expanded="True" />
             <Node name="IDAL" expanded="True" />
             <Node name="Model" expanded="True" />

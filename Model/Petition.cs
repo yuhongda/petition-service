@@ -12,5 +12,6 @@ namespace cms_webservice.Model
         public string ToUserName { get; set; }
         public int Status { get; set; }
         public int HandsUp { get; set; }
+        public int ReviewStatus { get; set; }
     }
 }

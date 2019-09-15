@@ -10,11 +10,11 @@ namespace cms_webservice.DAL
     public class PetitionDAL : IPetitionDAL
     {
         #region SQL
-        public const string sqlGetPetitionList = "SELECT T_Petitions.*, T_Pic.imageUrl, (SELECT COUNT(*) AS Expr1 FROM T_HandsUpRecord WHERE(T_Petitions.id = petitionId)) AS handsUpCount, T_User.username AS fromUserName, T_User.avatar AS fromUserAvatar FROM T_Petitions LEFT OUTER JOIN T_User ON T_Petitions.fromUserId = T_User.phone LEFT OUTER JOIN T_Pic ON T_Petitions.id = T_Pic.petitionId";
-        public const string sqlInsertPetition = "INSERT INTO T_Petitions (title, description, createTime, fromUserId, toUserId, toUserName, status, handsUp) VALUES ({0},{1},{2},{3},{4},{5},{6},0); SELECT CAST(scope_identity() AS int);";
+        public const string sqlGetPetitionList = "SELECT T_Petitions.*, T_Pic.imageUrl, (SELECT COUNT(*) AS Expr1 FROM T_HandsUpRecord WHERE(T_Petitions.id = petitionId)) AS handsUpCount, T_User.username AS fromUserName, T_User.avatar AS fromUserAvatar FROM T_Petitions LEFT OUTER JOIN T_User ON T_Petitions.fromUserId = T_User.phone LEFT OUTER JOIN T_Pic ON T_Petitions.id = T_Pic.petitionId WHERE (T_Petitions.reviewStatus = {0})";
+        public const string sqlInsertPetition = "INSERT INTO T_Petitions (title, description, createTime, fromUserId, toUserId, toUserName, status, handsUp, reviewStatus) VALUES ({0},{1},{2},{3},{4},{5},{6},0, {7}); SELECT CAST(scope_identity() AS int);";
         public const string sqlInsertPic = "INSERT INTO T_Pic (petitionId, imageUrl) VALUES ({0},{1})";
         public const string sqlGetPetitionById = "SELECT T_Petitions.*, T_Pic.imageUrl, (SELECT COUNT(*) AS Expr1 FROM T_HandsUpRecord WHERE(T_Petitions.id = petitionId)) AS handsUpCount, T_User.username AS fromUserName, T_User.avatar AS fromUserAvatar FROM T_Petitions LEFT OUTER JOIN T_User ON T_Petitions.fromUserId = T_User.phone LEFT OUTER JOIN T_Pic ON T_Petitions.id = T_Pic.petitionId WHERE (T_Petitions.id = {0})";
-        public const string sqlUpdatePetition = "UPDATE T_Petitions SET title = {1}, description = {2}, createTime = {3}, fromUserId = {4}, toUserId = {5}, toUserName = {6}, status = {7}, handsUp = {8} WHERE (id = {0})";
+        public const string sqlUpdatePetition = "UPDATE T_Petitions SET title = {1}, description = {2}, createTime = {3}, fromUserId = {4}, toUserId = {5}, toUserName = {6}, status = {7}, handsUp = {8}, reviewStatus = {9} WHERE (id = {0})";
         public const string sqlDeletePic = "DELETE FROM T_Pic WHERE (petitionId = {0})";
         public const string sqlGetPicsByPetitionId = "SELECT * FROM T_Pic WHERE (petitionId = {0})";
         
@@ -43,9 +43,12 @@ namespace cms_webservice.DAL
         #region Members
 
 
-        public DataTable getPetitionList()
+        public DataTable getPetitionList(int reviewStatus)
         {
-            return DAO.Select(sqlGetPetitionList);
+            SqlParameter[] sp = {
+                new SqlParameter("@reviewStatus", reviewStatus)
+            };
+            return DAO.Select(string.Format(sqlGetPetitionList, "@reviewStatus"), sp);
         }
 
         public DataTable getPicsByPetitionId()
@@ -66,7 +69,7 @@ namespace cms_webservice.DAL
             Dictionary<SqlParameter[], string> insertSqls = new Dictionary<SqlParameter[], string>();
             Int32 newId = 0;
 
-            string sql = string.Format(sqlInsertPetition, "@title", "@description", "@createTime", "@fromUserId", "@toUserId", "@toUserName", "@status");
+            string sql = string.Format(sqlInsertPetition, "@title", "@description", "@createTime", "@fromUserId", "@toUserId", "@toUserName", "@status", "@reviewStatus");
             SqlParameter[] parms = {
                 new SqlParameter ("@title", petition.Title),
                 new SqlParameter ("@description", petition.Description),
@@ -74,7 +77,8 @@ namespace cms_webservice.DAL
                 new SqlParameter ("@fromUserId", petition.FromUserId),
                 new SqlParameter ("@toUserId", petition.ToUserId),
                 new SqlParameter ("@toUserName", petition.ToUserName),
-                new SqlParameter ("@status", petition.Status)
+                new SqlParameter ("@status", petition.Status),
+                new SqlParameter ("@reviewStatus", petition.ReviewStatus),
             };
             //insertSqls.Add(parms, sql);
             newId = (Int32)DAO.SelectScalar(sql, parms);
@@ -106,7 +110,7 @@ namespace cms_webservice.DAL
         {
             Dictionary<SqlParameter[], string> updateSqls = new Dictionary<SqlParameter[], string>();
 
-            string sql = string.Format(sqlUpdatePetition, "@id", "@title", "@description", "@createTime", "@fromUserId", "@toUserId", "@toUserName", "@status", "@handsUp");
+            string sql = string.Format(sqlUpdatePetition, "@id", "@title", "@description", "@createTime", "@fromUserId", "@toUserId", "@toUserName", "@status", "@handsUp", "@reviewStatus");
             SqlParameter[] parms = {
                 new SqlParameter ("@id", petition.Id),
                 new SqlParameter ("@title", petition.Title),
@@ -116,7 +120,8 @@ namespace cms_webservice.DAL
                 new SqlParameter ("@toUserId", petition.ToUserId),
                 new SqlParameter ("@toUserName", petition.ToUserName),
                 new SqlParameter ("@status", petition.Status),
-                new SqlParameter ("@handsUp", petition.HandsUp)
+                new SqlParameter ("@handsUp", petition.HandsUp),
+                new SqlParameter ("@reviewStatus", petition.ReviewStatus),
             };
             updateSqls.Add(parms, sql);
 

@@ -51,7 +51,7 @@ namespace cms_webservice
             PageMoudle petitionPageModle = this.Lazy_PetitionBLL.getPetitionList(postData.pageSize, new List<SortField>() {
                 new SortField() { FieldName = "handsUpCount", DESC = true },
                 new SortField() { FieldName = "id", DESC = false },
-            });
+            }, postData.reviewStatus);
             petitionPageModle.CurrentPage = postData.currentPage;
 
             List<PetitionList> petitionList = petitionPageModle.CurrentData.ToList<PetitionList>();
@@ -69,6 +69,7 @@ namespace cms_webservice
                         ToUserId = p.ToUserId,
                         ToUserName = p.ToUserName,
                         Status = p.Status,
+                        ReviewStatus = p.ReviewStatus,
                         HandsUp = p.HandsUp,
                         HandsUpCount = p.HandsUpCount,
                         Pics = g.ToList().Where<PetitionList>(item => item.ImageUrl != null).Select<PetitionList, string>(item => item.ImageUrl).ToList<string>(),
@@ -108,6 +109,7 @@ namespace cms_webservice
                         ToUserId = p.ToUserId,
                         ToUserName = p.ToUserName,
                         Status = p.Status,
+                        ReviewStatus = p.ReviewStatus,
                         HandsUp = p.HandsUp,
                         HandsUpCount = p.HandsUpCount,
                         Pics = g.ToList().Where<PetitionList>(item => item.ImageUrl != null).Select<PetitionList, string>(item => item.ImageUrl).ToList<string>(),
@@ -400,6 +402,7 @@ namespace cms_webservice
         public int pageSize { get; set; }
         public int currentPage { get; set; }
         public int petitionId { get; set; }
+        public int reviewStatus { get; set;  }
     }
 
     public class PetitionList
@@ -412,6 +415,7 @@ namespace cms_webservice
         public string ToUserId { get; set; }
         public string ToUserName { get; set; }
         public int Status { get; set; }
+        public int ReviewStatus { get; set; }
         public int? HandsUp { get; set; }
         public string ImageUrl { get; set; }
         public int? HandsUpCount { get; set; }
@@ -429,6 +433,7 @@ namespace cms_webservice
         public string ToUserId { get; set; }
         public string ToUserName { get; set; }
         public int Status { get; set; }
+        public int ReviewStatus { get; set; }
         public int? HandsUp { get; set; }
         public List<string> Pics { get; set; }
         public int? HandsUpCount { get; set; }

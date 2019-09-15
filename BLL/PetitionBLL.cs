@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using cms_webservice.IDAL;
 using cms_webservice.Model;
 using cms_webservice.DAL;
+using System.Data.SqlClient;
 
 namespace cms_webservice.BLL
 {
@@ -11,9 +12,12 @@ namespace cms_webservice.BLL
     {
         private static readonly IPetitionDAL dal = cms_webservice.DALFactory.DataAccess.CreatePetitionDAL();
 
-        public PageMoudle getPetitionList(int pageSize, List<SortField> sortFields)
+        public PageMoudle getPetitionList(int pageSize, List<SortField> sortFields, int reviewStatus)
         {
-            PageMoudle petitionPageModle = new PageMoudle(PetitionDAL.sqlGetPetitionList);
+            SqlParameter[] sp = {
+                new SqlParameter("@reviewStatus", reviewStatus)
+            };
+            PageMoudle petitionPageModle = new PageMoudle(string.Format(PetitionDAL.sqlGetPetitionList, "@reviewStatus"), sp);
             petitionPageModle.SortField = sortFields;
             petitionPageModle.PageSize = pageSize;
             return petitionPageModle;

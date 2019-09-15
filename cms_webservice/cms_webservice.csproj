@@ -53,6 +53,7 @@
     </Content>
     <Content Include="PetitionWebService.asmx" />
     <Content Include="Global.asax" />
+    <Content Include="AdminWebService.asmx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArticleWebService.asmx.cs">
@@ -73,6 +74,9 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWebService.asmx.cs">
+      <DependentUpon>AdminWebService.asmx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

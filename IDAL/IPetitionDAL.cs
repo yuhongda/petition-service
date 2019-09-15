@@ -8,7 +8,7 @@ namespace cms_webservice.IDAL
     public interface IPetitionDAL
     {
         int InsertPetition(Petition petition, List<Pic> pics);
-        DataTable getPetitionList();
+        DataTable getPetitionList(int reviewStatus);
         DataTable getPetitionById(int petitionId);
         bool UpdatePetition(Petition petition, List<Pic> pics);
         DataTable getPicsByPetitionId();
