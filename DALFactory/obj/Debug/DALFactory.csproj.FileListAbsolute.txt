@@ -22,7 +22,6 @@ C:/Users/Yu.hongda/Dropbox/Source.Code/cms_webservice/DALFactory/obj/Debug/cms_w
 /Users/yuhongda/Documents/Projects/petition-service/DALFactory/bin/Debug/cms_webservice.Model.dll
 /Users/yuhongda/Documents/Projects/petition-service/DALFactory/bin/Debug/cms_webservice.IDAL.pdb
 /Users/yuhongda/Documents/Projects/petition-service/DALFactory/bin/Debug/cms_webservice.Model.pdb
-/Users/yuhongda/Documents/Projects/petition-service/DALFactory/obj/Debug/DALFactory.csprojAssemblyReference.cache
 /Users/yuhongda/Documents/Projects/petition-service/DALFactory/obj/Debug/DALFactory.csproj.CoreCompileInputs.cache
 /Users/yuhongda/Documents/Projects/petition-service/DALFactory/obj/Debug/DALFactory.csproj.CopyComplete
 /Users/yuhongda/Documents/Projects/petition-service/DALFactory/obj/Debug/cms_webservice.DALFactory.dll

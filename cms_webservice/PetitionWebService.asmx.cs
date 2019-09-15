@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
 using cms_webservice.BLL;
+using cms_webservice.DAL;
 using cms_webservice.Model;
 
 namespace cms_webservice
@@ -42,10 +43,18 @@ namespace cms_webservice
         }
 
         [WebMethod]
-        public string getPetitionList()
+        public string getPetitionList(string post)
         {
+            SelectPetitionPostData postData = post.FromJsonTo<SelectPetitionPostData>();
             List<ReturnPetitionList> returnPetitionList = new List<ReturnPetitionList>();
-            List<PetitionList> petitionList = this.Lazy_PetitionBLL.getPetitionList().ToList<PetitionList>();
+
+            PageMoudle petitionPageModle = this.Lazy_PetitionBLL.getPetitionList(postData.pageSize, new List<SortField>() {
+                new SortField() { FieldName = "handsUpCount", DESC = true },
+                new SortField() { FieldName = "id", DESC = false },
+            });
+            petitionPageModle.CurrentPage = postData.currentPage;
+
+            List<PetitionList> petitionList = petitionPageModle.CurrentData.ToList<PetitionList>();
             returnPetitionList = petitionList.GroupBy(
                 p => p.Id,
                 (key, g) => {
@@ -68,9 +77,12 @@ namespace cms_webservice
                     };
                 }
             ).ToList<ReturnPetitionList>();
-            return new Result() {
+            return new ResultWithPage() {
                 Code = 0,
-                Data = returnPetitionList
+                Data = returnPetitionList,
+                CurrentPage = petitionPageModle.CurrentPage,
+                PageCount = petitionPageModle.PageCount,
+                Total = petitionPageModle.TotalCount,
             }.ToJSON();
         }
 
@@ -324,6 +336,16 @@ namespace cms_webservice
         public string Message { get; set; }
     }
 
+    public class ResultWithPage
+    {
+        public int Code { get; set; }
+        public List<ReturnPetitionList> Data { get; set; }
+        public string Message { get; set; }
+        public int CurrentPage { get; set; }
+        public int Total { get; set; }
+        public int PageCount { get; set; }
+    }
+
     public class ResultHandsUpRecord
     {
         public int Code { get; set; }
@@ -375,6 +397,8 @@ namespace cms_webservice
 
     public class SelectPetitionPostData
     {
+        public int pageSize { get; set; }
+        public int currentPage { get; set; }
         public int petitionId { get; set; }
     }
 

@@ -3,6 +3,7 @@ using System.Data;
 using System.Collections.Generic;
 using cms_webservice.IDAL;
 using cms_webservice.Model;
+using cms_webservice.DAL;
 
 namespace cms_webservice.BLL
 {
@@ -10,9 +11,12 @@ namespace cms_webservice.BLL
     {
         private static readonly IPetitionDAL dal = cms_webservice.DALFactory.DataAccess.CreatePetitionDAL();
 
-        public DataTable getPetitionList()
+        public PageMoudle getPetitionList(int pageSize, List<SortField> sortFields)
         {
-            return dal.getPetitionList();
+            PageMoudle petitionPageModle = new PageMoudle(PetitionDAL.sqlGetPetitionList);
+            petitionPageModle.SortField = sortFields;
+            petitionPageModle.PageSize = pageSize;
+            return petitionPageModle;
         }
 
         public int InsertPetition(Petition petition, List<Pic> pics)
