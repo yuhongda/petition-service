@@ -10,14 +10,10 @@ namespace cms_webservice.DAL
     public class PetitionDAL : IPetitionDAL
     {
         #region SQL
-        public const string sqlGetPetitionList = "SELECT T_Petitions.*, T_Pic.imageUrl, " +
-            "(SELECT COUNT(*) AS Expr1 FROM T_HandsUpRecord WHERE(T_Petitions.id = petitionId)) AS handsUpCount " +
-            "FROM T_Petitions LEFT OUTER JOIN T_Pic ON T_Petitions.id = T_Pic.petitionId";
+        public const string sqlGetPetitionList = "SELECT T_Petitions.*, T_Pic.imageUrl, (SELECT COUNT(*) AS Expr1 FROM T_HandsUpRecord WHERE(T_Petitions.id = petitionId)) AS handsUpCount, T_User.username AS fromUserName, T_User.avatar AS fromUserAvatar FROM T_Petitions LEFT OUTER JOIN T_User ON T_Petitions.fromUserId = T_User.phone LEFT OUTER JOIN T_Pic ON T_Petitions.id = T_Pic.petitionId";
         public const string sqlInsertPetition = "INSERT INTO T_Petitions (title, description, createTime, fromUserId, toUserId, toUserName, status, handsUp) VALUES ({0},{1},{2},{3},{4},{5},{6},0); SELECT CAST(scope_identity() AS int);";
         public const string sqlInsertPic = "INSERT INTO T_Pic (petitionId, imageUrl) VALUES ({0},{1})";
-        public const string sqlGetPetitionById = "SELECT T_Petitions.*, T_Pic.imageUrl," +
-            "(SELECT COUNT(*) AS Expr1 FROM T_HandsUpRecord WHERE(T_Petitions.id = petitionId)) AS handsUpCount" +
-            " FROM T_Petitions LEFT OUTER JOIN T_Pic ON T_Petitions.id = T_Pic.petitionId WHERE (T_Petitions.id = {0})";
+        public const string sqlGetPetitionById = "SELECT T_Petitions.*, T_Pic.imageUrl, (SELECT COUNT(*) AS Expr1 FROM T_HandsUpRecord WHERE(T_Petitions.id = petitionId)) AS handsUpCount, T_User.username AS fromUserName, T_User.avatar AS fromUserAvatar FROM T_Petitions LEFT OUTER JOIN T_User ON T_Petitions.fromUserId = T_User.phone LEFT OUTER JOIN T_Pic ON T_Petitions.id = T_Pic.petitionId WHERE (T_Petitions.id = {0})";
         public const string sqlUpdatePetition = "UPDATE T_Petitions SET title = {1}, description = {2}, createTime = {3}, fromUserId = {4}, toUserId = {5}, toUserName = {6}, status = {7}, handsUp = {8} WHERE (id = {0})";
         public const string sqlDeletePic = "DELETE FROM T_Pic WHERE (petitionId = {0})";
         public const string sqlGetPicsByPetitionId = "SELECT * FROM T_Pic WHERE (petitionId = {0})";

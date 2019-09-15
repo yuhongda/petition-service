@@ -62,7 +62,9 @@ namespace cms_webservice
                         Status = p.Status,
                         HandsUp = p.HandsUp,
                         HandsUpCount = p.HandsUpCount,
-                        Pics = g.ToList().Where<PetitionList>(item => item.ImageUrl != null).Select<PetitionList, string>(item => item.ImageUrl).ToList<string>()
+                        Pics = g.ToList().Where<PetitionList>(item => item.ImageUrl != null).Select<PetitionList, string>(item => item.ImageUrl).ToList<string>(),
+                        FromUserName = p.FromUserName,
+                        FromUserAvatar = p.FromUserAvatar
                     };
                 }
             ).ToList<ReturnPetitionList>();
@@ -96,7 +98,9 @@ namespace cms_webservice
                         Status = p.Status,
                         HandsUp = p.HandsUp,
                         HandsUpCount = p.HandsUpCount,
-                        Pics = g.ToList().Where<PetitionList>(item => item.ImageUrl != null).Select<PetitionList, string>(item => item.ImageUrl).ToList<string>()
+                        Pics = g.ToList().Where<PetitionList>(item => item.ImageUrl != null).Select<PetitionList, string>(item => item.ImageUrl).ToList<string>(),
+                        FromUserName = p.FromUserName,
+                        FromUserAvatar = p.FromUserAvatar
                     };
                 }
             ).ToList<ReturnPetitionList>();
@@ -387,6 +391,8 @@ namespace cms_webservice
         public int? HandsUp { get; set; }
         public string ImageUrl { get; set; }
         public int? HandsUpCount { get; set; }
+        public string FromUserName { get; set; }
+        public string FromUserAvatar { get; set; }
     }
 
     public class ReturnPetitionList
@@ -402,6 +408,8 @@ namespace cms_webservice
         public int? HandsUp { get; set; }
         public List<string> Pics { get; set; }
         public int? HandsUpCount { get; set; }
+        public string FromUserName { get; set; }
+        public string FromUserAvatar { get; set; }
     }
 
     public class HandsUpPostData
