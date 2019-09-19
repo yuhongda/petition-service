@@ -328,7 +328,40 @@ namespace cms_webservice
                 return new Result() { Code = 101, Data = null, Message = "用户不存在或密码错误" }.ToJSON();
             }
         }
+
+        [WebMethod]
+        public string signInWithWeibo(string post)
+        {
+            User postData = post.FromJsonTo<User>();
+
+            List<User> userList = this.Lazy_UserBLL.getUserByWeiboId(postData).ToList<User>();
+            if (userList.Count > 0)
+            {
+                return new ResultUserList() { Code = 0, Data = userList }.ToJSON();
+            }
+            else
+            {
+                return new Result() { Code = 101, Data = null, Message = "用户不存在" }.ToJSON();
+            }
+        }
+
+        [WebMethod]
+        public string updateUser(string post)
+        {
+            User postData = post.FromJsonTo<User>();
+
+            if (this.Lazy_UserBLL.UpdateUser(postData))
+            {
+                List<User> userList = this.Lazy_UserBLL.getUserByPhone(postData).ToList<User>();
+                return new ResultUserList() { Code = 0, Data = userList }.ToJSON();
+            }
+            else
+            {
+                return new Result() { Code = 100, Data = null, Message = "发生错误" }.ToJSON();
+            }
+        }
         
+
     }
 
     public class Result

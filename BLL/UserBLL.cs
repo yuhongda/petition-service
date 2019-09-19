@@ -44,7 +44,11 @@ namespace cms_webservice.BLL
             return dal.getUserByPhone(user);
         }
 
-        
+        public DataTable getUserByWeiboId(User user)
+        {
+            return dal.getUserByWeiboId(user);
+        }
+
 
     }
 }

@@ -13,5 +13,6 @@ namespace cms_webservice.IDAL
         bool CheckUsernameExists(User user);
         bool CheckUserSignIn(User user);
         DataTable getUserByPhone(User user);
+        DataTable getUserByWeiboId(User user);
     }
 }

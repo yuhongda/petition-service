@@ -10,13 +10,14 @@ namespace cms_webservice.DAL
     public class UserDAL : IUserDAL
     {
         #region SQL
-        public const string sqlInsertUser = "INSERT INTO T_User(phone, username, password, avatar) VALUES({0},{1},{2},{3})";
+        public const string sqlInsertUser = "INSERT INTO T_User(phone, username, password, avatar, weiboId) VALUES({0},{1},{2},{3},{4})";
         public const string sqlDeleteUser = "DELETE FROM T_User WHERE (phone = {0})";
-        public const string sqlUpdateUser = "UPDATE T_User SET username={1}, password={2}, avatar={3} WHERE (phone = {0})";
+        public const string sqlUpdateUser = "UPDATE T_User SET username={1}, password={2}, avatar={3}, weiboId={4} WHERE (phone = {0})";
         public const string sqlCheckUserExists = "SELECT * FROM T_User WHERE (phone = {0})";
         public const string sqlCheckUsernameExists = "SELECT * FROM T_User WHERE (username = {0})";
         public const string sqlCheckUserSignIn = "SELECT * FROM T_User WHERE (phone = {0}) AND (password = {1})";
         public const string sqlSelectUserByPhone = "SELECT * FROM T_User WHERE (phone = {0})";
+        public const string sqlSelectUserByWeiboId = "SELECT * FROM T_User WHERE (weiboId = {0})";
 
 
         #endregion
@@ -46,12 +47,13 @@ namespace cms_webservice.DAL
         {
             Dictionary<SqlParameter[], string> insertSqls = new Dictionary<SqlParameter[], string>();
 
-            string sql = string.Format(sqlInsertUser, "@phone", "@username", "@password", "@avatar");
+            string sql = string.Format(sqlInsertUser, "@phone", "@username", "@password", "@avatar", "@weiboId");
             SqlParameter[] parms = {
                 new SqlParameter ("@phone", user.Phone),
                 new SqlParameter ("@username", user.Username),
                 new SqlParameter ("@password", user.Password),
-                new SqlParameter ("@avatar", user.Avatar)
+                new SqlParameter ("@avatar", user.Avatar),
+                new SqlParameter ("@weiboId", user.WeiboId)
             };
             insertSqls.Add(parms, sql);
 
@@ -75,12 +77,13 @@ namespace cms_webservice.DAL
         {
             Dictionary<SqlParameter[], string> updateSqls = new Dictionary<SqlParameter[], string>();
 
-            string sql = string.Format(sqlUpdateUser, "@phone", "@username", "@password", "@avatar");
+            string sql = string.Format(sqlUpdateUser, "@phone", "@username", "@password", "@avatar", "@weiboId");
             SqlParameter[] parms = {
                 new SqlParameter ("@phone", user.Phone),
                 new SqlParameter ("@username", user.Username),
                 new SqlParameter ("@password", user.Password),
-                new SqlParameter ("@avatar", user.Avatar)
+                new SqlParameter ("@avatar", user.Avatar),
+                new SqlParameter ("@weiboId", user.WeiboId)
             };
             updateSqls.Add(parms, sql);
 
@@ -116,6 +119,15 @@ namespace cms_webservice.DAL
             };
 
             return DAO.CheckExists(sql, parms) != null;
+        }
+        
+
+        public DataTable getUserByWeiboId(User user)
+        {
+            SqlParameter[] sp = {
+                new SqlParameter ("@weiboId", user.WeiboId),
+            };
+            return DAO.Select(string.Format(sqlSelectUserByWeiboId, "@weiboId"), sp);
         }
 
         public DataTable getUserByPhone(User user)
